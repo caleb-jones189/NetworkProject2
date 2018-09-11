@@ -18,7 +18,6 @@ int main(int argc, char **argv)
     struct hostent *hp;
     struct sockaddr_in server_addr, from_addr;
     socklen_t from_len;
-    //char buf[MAX_LEN]={'K','n','o','c','k','!',' ','K','n','o','c','k','!','\0'} ;
     char buf[MAX_LEN]="Knock! Knock!";
     int num_bytes;
     
@@ -50,7 +49,6 @@ int main(int argc, char **argv)
     // ask user for a message to be sent
     //printf("Please enter a message: ");
     memset(buf, 0, MAX_LEN);
-    char buf[MAX_LEN]={'K','n','o','c','k','!',' ','K','n','o','c','k','!','\0'} ;
     //fgets(buf, MAX_LEN, stdin);
     
         
@@ -82,9 +80,8 @@ int main(int argc, char **argv)
     write(1, buf, num_bytes);
     printf("\n");
     
-    memset(buf, 0, MAX_LEN);
-    char buf[MAX_LEN]={'R','o','b','i','n','\0'} ;
-
+//    memset(buf, 0, MAX_LEN);
+    strcpy(buf,"Robin");
     
     // send message ROBIN 
     num_bytes = sendto(sock, buf, strlen(buf), 0,
@@ -114,7 +111,7 @@ int main(int argc, char **argv)
     printf("\n");
 
         memset(buf, 0, MAX_LEN);                    //added
-        char buf[MAX_LEN]={'R','o','b','i','n',' ','y','o','u',' ','.','H','a','n','d',' ','o','v','e','r',' ','y','o','u','r',' ','c','a','s','h','.','\0'} ;
+        strcpy(buf,"Robin you. Hand over the cash.")
      // send message ROBIN YOU... 
     num_bytes = sendto(sock, buf, strlen(buf), 0,
                        (struct sockaddr *)&server_addr,
