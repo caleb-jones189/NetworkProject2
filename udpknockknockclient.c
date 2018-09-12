@@ -46,11 +46,9 @@ int main(int argc, char **argv)
     memcpy(&server_addr.sin_addr, hp->h_addr, hp->h_length);
     server_addr.sin_port = htons(atoi(argv[2]));
     
-    // ask user for a message to be sent
-    //printf("Please enter a message: ");
-    memset(buf, 0, MAX_LEN);
-    //fgets(buf, MAX_LEN, stdin);
-    
+        
+   
+       
         
     // send message KNOCK KNOCK 
     num_bytes = sendto(sock, buf, strlen(buf), 0,
@@ -76,7 +74,7 @@ int main(int argc, char **argv)
     //printf("Got an ack: ");
 
     //PRINT WHOSE THERE
-    write(1, "Got an ack: ", 12);
+   // write(1, "Got an ack: ", 12);
     write(1, buf, num_bytes);
     printf("\n");
     
@@ -106,12 +104,12 @@ int main(int argc, char **argv)
     //PRINT ROBIN WHO 
     // display received ack message
     //printf("Got an ack: ");
-    write(1, "Got an ack: ", 12);
+    //write(1, "Got an ack: ", 12);
     write(1, buf, num_bytes);
     printf("\n");
 
         memset(buf, 0, MAX_LEN);                    //added
-        strcpy(buf,"Robin you. Hand over the cash.")
+        strcpy(buf,"Robin you. Hand over the cash.");
      // send message ROBIN YOU... 
     num_bytes = sendto(sock, buf, strlen(buf), 0,
                        (struct sockaddr *)&server_addr,
