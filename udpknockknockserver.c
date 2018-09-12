@@ -49,6 +49,8 @@ int main(int argc, char **argv)
     }
     
     while (1) {
+
+	
         // client address length
         client_addrlen = sizeof(client_addr);    // must use a standalone variable
         // in below call, client_addrlen is an in-and-out parameter
@@ -64,17 +66,44 @@ int main(int argc, char **argv)
         
         // display the received message
         //printf("Received a datagram: ");
-        write(1, "Received a datagram: ", 21);
+        //write(1, "Received a datagram: ", 21);
         write(1, buf, num_bytes);
         printf("\n");
+
+	strcopy(buf,"who'se there");
     
         // acknowledge the receipt of the message from client
-        num_bytes = sendto(sock, "Got your message\n", 17, 0,
+        num_bytes = sendto(sock, buf, len(buf), 0,
                           (struct sockaddr *)&client_addr, client_addrlen);
         if (num_bytes < 0) {
             perror("sendto");
             exit(4);
         }
+
+	//Recieve robin
+	num_bytes = recvfrom(sock, buf, MAX_LEN, 0,
+                             (struct sockaddr *)&client_addr, &client_addrlen);
+	//Write Robin
+	 write(1, buf, num_bytes);
+        	printf("\n");
+
+	//Send Robin who 
+	strcopy(buf,"robin who");
+	 num_bytes = sendto(sock, buf, len(buf), 0,
+                          (struct sockaddr *)&client_addr, client_addrlen);
+        if (num_bytes < 0) {
+            perror("sendto");
+            exit(4);
+        }
+	//Recieve your cash
+	num_bytes = recvfrom(sock, buf, MAX_LEN, 0,
+                             (struct sockaddr *)&client_addr, &client_addrlen);
+	//Print your cash
+	write(1,buf,num_bytes);
+	printf("\n");
+
+
+
     }
     
     return 0;
