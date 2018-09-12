@@ -70,10 +70,10 @@ int main(int argc, char **argv)
         write(1, buf, num_bytes);
         printf("\n");
 
-	strcopy(buf,"who'se there");
+	strcpy(buf,"who'se there");
     
         // acknowledge the receipt of the message from client
-        num_bytes = sendto(sock, buf, len(buf), 0,
+        num_bytes = sendto(sock, buf,strlen(buf), 0,
                           (struct sockaddr *)&client_addr, client_addrlen);
         if (num_bytes < 0) {
             perror("sendto");
@@ -88,8 +88,8 @@ int main(int argc, char **argv)
         	printf("\n");
 
 	//Send Robin who 
-	strcopy(buf,"robin who");
-	 num_bytes = sendto(sock, buf, len(buf), 0,
+	strcpy(buf,"robin who");
+	 num_bytes = sendto(sock, buf,strlen(buf), 0,
                           (struct sockaddr *)&client_addr, client_addrlen);
         if (num_bytes < 0) {
             perror("sendto");
